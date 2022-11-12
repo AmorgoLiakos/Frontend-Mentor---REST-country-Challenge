@@ -2,9 +2,6 @@ fetch('https://restcountries.com/v3.1/all')
   .then(res => res.json())
   .then(data =>
     data.forEach(x => {
-
-      document.querySelector('.flag img').src = x.flags.svg
-
       let html = `<div class="card">
       <div class="flag">
         <img src="${x.flags.svg}" alt="flag">
