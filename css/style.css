@@ -1,0 +1,115 @@
+:root {
+  --dark-mode-elements: hsl(209, 23%, 22%);
+  --dark-mode-background: hsl(207, 26%, 17%);
+  --dark-mode-text: hsl(0, 0%, 98%);
+  --light-mode-text: hsl(200, 15%, 8%);
+  --light-mode-input: hsl(0, 0%, 52%);
+  --light-mode-background: hsl(0, 0%, 98%);
+  --light-mode-elements: hsl(0, 0%, 98%);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+img {
+  width: 100%;
+}
+
+header {
+  background-color: var(--dark-mode-elements);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 80px;
+  height: 75px;
+
+}
+
+header h4 {
+  color: var(--dark-mode-text);
+}
+
+header .theme-toggler {
+  background-color: unset;
+  border: none;
+  color: var(--dark-mode-text);
+  display: flex;
+  gap: 5px;
+}
+
+.main-container {
+  padding: 45px 80px;
+  background-color: var(--dark-mode-background);
+  /* height: calc(100vh - 75px); */
+}
+
+.main-container .search-filter-row {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 60px;
+}
+
+.main-container input {
+  background-color: var(--dark-mode-elements);
+  color: var(--dark-mode-text);
+  border: none;
+  padding: 20px 55px;
+}
+
+.search-container ion-icon {
+  position: absolute;
+  top: 50%;
+  left: 25px;
+  transform: translateY(-50%);
+  color: var(--dark-mode-text);
+}
+
+.filter-container select {
+  padding: 20px;
+  background-color: var(--dark-mode-elements);
+  border: none;
+  color: var(--dark-mode-text);
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 75px;
+}
+
+.card {
+  background-color: var(--dark-mode-elements);
+}
+
+.flag {
+  height: 165px;
+}
+
+.flag img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.country-details {
+  color: var(--dark-mode-text);
+  padding: 20px 40px 30px;
+}
+
+.country {
+  margin-bottom: 25px;
+}
+
+.country-details h5 {
+  margin-bottom: 5px;
+}
+
+.country-details h5 span {
+  font-weight: 300;
+}
