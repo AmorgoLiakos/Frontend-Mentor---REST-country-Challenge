@@ -78,6 +78,15 @@ header .theme-toggler {
   color: var(--dark-mode-text);
 }
 
+.button-card {
+  border: none;
+}
+
+.button-card:hover {
+  cursor: pointer;
+  filter: brightness(0.7);
+}
+
 .cards-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
