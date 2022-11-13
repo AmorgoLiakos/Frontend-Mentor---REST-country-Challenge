@@ -21,6 +21,11 @@ img {
   width: 100%;
 }
 
+a {
+  color: unset;
+  text-decoration: none;
+}
+
 header {
   background-color: var(--dark-mode-elements);
   display: flex;
