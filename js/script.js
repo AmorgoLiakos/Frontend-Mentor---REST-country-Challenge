@@ -1,7 +1,6 @@
 if (window.location.pathname == "/") {
   window.addEventListener('DOMContentLoaded', () => {
     fetchData('all')
-    setTimeout(addListenerCard, 1000)
     document.getElementById('search').addEventListener('keyup', (e) => {
       search(e.target.value)
     })
@@ -41,6 +40,8 @@ const fetchData = (q) => {
       })
     )
     .catch(error => console.log(error))
+
+  setTimeout(addListenerCard, 1000)
 }
 
 const fetchDataSingle = (q) => {
