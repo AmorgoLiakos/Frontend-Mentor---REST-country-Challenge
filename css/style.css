@@ -51,7 +51,6 @@ header .theme-toggler {
 .main-container {
   padding: 45px 80px;
   background-color: var(--dark-mode-background);
-  /* height: calc(100vh - 75px); */
 }
 
 .main-container .search-filter-row {
@@ -126,4 +125,14 @@ header .theme-toggler {
 
 .country-details h5 span {
   font-weight: 300;
+}
+
+/* Single */
+.back-btn {
+  display: flex;
+  color: var(--dark-mode-text);
+}
+
+.back-btn ion-icon {
+  margin-right: 5px;
 }
