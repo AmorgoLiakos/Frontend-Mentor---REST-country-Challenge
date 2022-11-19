@@ -1,12 +1,9 @@
 :root {
-  --dark-mode-elements: hsl(209, 23%, 22%);
-  --dark-mode-background: hsl(207, 26%, 17%);
-  --dark-mode-text: hsl(0, 0%, 98%);
-  --light-mode-text: hsl(200, 15%, 8%);
-  --light-mode-input: hsl(0, 0%, 52%);
-  --light-mode-background: hsl(0, 0%, 98%);
-  --light-mode-elements: hsl(0, 0%, 98%);
+  --bg-elements: hsl(209, 23%, 22%);
+  --bg-general: hsl(207, 26%, 17%);
+  --text-color: hsl(0, 0%, 98%);
 }
+
 
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap');
 
@@ -26,31 +23,61 @@ a {
   text-decoration: none;
 }
 
+select {
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px hsl(209deg 23% 22%);
+}
+
 header {
-  background-color: var(--dark-mode-elements);
+  background-color: var(--bg-elements);
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 25px 80px;
   height: 75px;
-
 }
 
 header h4 {
-  color: var(--dark-mode-text);
+  color: var(--text-color);
 }
 
 header .theme-toggler {
   background-color: unset;
   border: none;
-  color: var(--dark-mode-text);
+  color: var(--text-color);
   display: flex;
   gap: 5px;
 }
 
+header .theme-toggler:hover {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 580px) {
+  header {
+    flex-direction: column;
+    height: unset;
+    padding: 25px 10px;
+  }
+
+  header h4 {
+    text-align: center;
+  }
+
+  header .theme-toggler {
+    margin-top: 10px;
+  }
+}
+
 .main-container {
   padding: 45px 80px;
-  background-color: var(--dark-mode-background);
+  background-color: var(--bg-general);
+}
+
+@media screen and (max-width: 580px) {
+  .main-container {
+    padding: 15px 30px;
+  }
 }
 
 .main-container .search-filter-row {
@@ -61,10 +88,12 @@ header .theme-toggler {
 }
 
 .main-container input {
-  background-color: var(--dark-mode-elements);
-  color: var(--dark-mode-text);
+  background-color: var(--bg-elements);
+  color: var(--text-color);
   border: none;
   padding: 20px 55px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px hsl(209deg 23% 22%);
 }
 
 .search-container ion-icon {
@@ -72,14 +101,30 @@ header .theme-toggler {
   top: 50%;
   left: 25px;
   transform: translateY(-50%);
-  color: var(--dark-mode-text);
+  color: var(--text-color);
+}
+
+@media screen and (max-width: 580px) {
+  .search-filter-row {
+    flex-direction: column;
+    margin-top: 40px;
+  }
+
+  .search-container ion-icon {
+    top: 15%;
+  }
+
+  .search-container input {
+    width: 100%;
+    margin-bottom: 50px;
+  }
 }
 
 .filter-container select {
   padding: 20px;
-  background-color: var(--dark-mode-elements);
+  background-color: var(--bg-elements);
   border: none;
-  color: var(--dark-mode-text);
+  color: var(--text-color);
 }
 
 .button-card {
@@ -92,26 +137,70 @@ header .theme-toggler {
 }
 
 .cards-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 75px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .card {
-  background-color: var(--dark-mode-elements);
+  background-color: var(--bg-elements);
+  width: 20%;
+  margin-right: 6.6%;
+  margin-bottom: 6.6%;
+  box-shadow: 0px 0px 10px 0px hsl(209deg 23% 22%);
+  border-radius: 3px;
 }
 
-.flag {
-  height: 165px;
+.card .flag img {
+  border-radius: 3px 3px 0 0;
 }
 
-.flag img {
-  height: 100%;
-  object-fit: cover;
+.card:nth-child(4n+4) {
+  margin-right: 0;
+}
+
+@media screen and (max-width: 991px) {
+  .card {
+    width: 28%;
+    margin-right: 8%;
+  }
+
+  .card:nth-child(4n+4) {
+    margin-right: 8%;
+  }
+
+  .card:nth-child(3n+3) {
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    width: 49%;
+    margin-right: 2%;
+  }
+
+  .card:nth-child(3n+3) {
+    margin-right: 2%;
+  }
+
+  .card:nth-child(2n+2) {
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .card {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .card:nth-child(all) {
+    margin-right: 0;
+  }
 }
 
 .country-details {
-  color: var(--dark-mode-text);
+  color: var(--text-color);
   padding: 20px 40px 30px;
 }
 
@@ -130,7 +219,13 @@ header .theme-toggler {
 /* Single */
 .back-btn {
   display: flex;
-  color: var(--dark-mode-text);
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color);
+  background-color: var(--bg-elements);
+  padding: 10px 20px;
+  border-radius: 5px;
+  width: 135px;
 }
 
 .back-btn ion-icon {

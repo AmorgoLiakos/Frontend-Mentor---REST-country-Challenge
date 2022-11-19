@@ -1,7 +1,30 @@
+window.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('themeToggler').addEventListener('click', () => {
+    let vars = document.querySelector(':root')
+
+    if (getComputedStyle(vars).getPropertyValue('--bg-elements') == 'hsl(209, 23%, 22%)') {
+      vars.style.setProperty('--bg-elements', 'hsl(0, 0%, 100%)')
+      vars.style.setProperty('--bg-general', 'hsl(0, 0%, 98%)')
+      vars.style.setProperty('--text-color', 'hsl(200, 15%, 8%)')
+      document.getElementById('themeName').innerHTML = 'Light Mode'
+      document.getElementById('themeIcon').innerHTML = '<ion-icon name="sunny"></ion-icon>'
+    } else {
+      vars.style.setProperty('--bg-elements', 'hsl(209, 23%, 22%)')
+      vars.style.setProperty('--bg-general', 'hsl(207, 26%, 17%)')
+      vars.style.setProperty('--text-color', 'hsl(0, 0%, 98%)')
+      document.getElementById('themeName').innerHTML = 'Dark Mode'
+      document.getElementById('themeIcon').innerHTML = '<ion-icon name="moon"></ion-icon>'
+    }
+  })
+})
+
 if (window.location.pathname == "/") {
   window.addEventListener('DOMContentLoaded', () => {
     fetchData('all')
     document.getElementById('search').addEventListener('keyup', (e) => {
+      search(e.target.value)
+    })
+    document.getElementById('search').addEventListener('focusout', (e) => {
       search(e.target.value)
     })
   })
@@ -15,19 +38,17 @@ if (window.location.pathname == "/single.html") {
 }
 
 const createCard = (img, name, population, region, capital) => {
-  return `<button id="${name}" class="button-card">
-            <div class="card">
-              <div class="flag">
-                <img src="${img}" alt="flag">
-              </div>
-              <div class="country-details">
-                <h4 class="country"> ${name} </h4>
-                <h5 class="population"> Population: <span class="population-span">${population}</span></h5>
-                <h5 class="region"> Region: <span class="region-span">${region}</span></h5>
-                <h5 class="capital"> Capital: <span class="capital-span">${capital}</span></h5>
-              </div>
+  return `<div id="${name}" class="card button-card">
+            <div class="flag">
+              <img src="${img}" alt="flag">
             </div>
-          </button>`
+            <div class="country-details">
+              <h4 class="country"> ${name} </h4>
+              <h5 class="population"> Population: <span class="population-span">${population}</span></h5>
+              <h5 class="region"> Region: <span class="region-span">${region}</span></h5>
+              <h5 class="capital"> Capital: <span class="capital-span">${capital}</span></h5>
+            </div>
+          </div>`
 }
 
 const fetchData = (q) => {
@@ -67,7 +88,7 @@ const addListenerCard = () => {
 
 const search = (s) => {
   if (s == "") {
-    return
+    fetchData('all')
   }
 
   clearData()
