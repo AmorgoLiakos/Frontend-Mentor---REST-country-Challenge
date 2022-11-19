@@ -3,7 +3,6 @@ window.addEventListener('DOMContentLoaded', () => {
     let vars = document.querySelector(':root')
 
     if (getComputedStyle(vars).getPropertyValue('--bg-elements').trim() == 'hsl(209, 23%, 22%)') {
-      console.log('test')
       vars.style.setProperty('--bg-elements', 'hsl(0, 0%, 100%)')
       vars.style.setProperty('--bg-general', 'hsl(0, 0%, 98%)')
       vars.style.setProperty('--text-color', 'hsl(200, 15%, 8%)')
