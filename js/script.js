@@ -73,6 +73,7 @@ const createCardSingle = (flag, name, native, population, region, subRegion, cap
   let cur = ""
   let langs = Object.values(languages)
   let lang = ""
+  let q = ""
   curs.forEach((x, i) => {
     if (i == curs.length - 1) {
       cur += x.name
@@ -87,22 +88,10 @@ const createCardSingle = (flag, name, native, population, region, subRegion, cap
       lang += y + " ,"
     }
   })
-  let q = ""
-  // let borderC = ""
+
   borderCountries.forEach(c => {
     q += c + ","
   })
-  let borderC = ""
-
-  async function fetchBorder(a) {
-    const response = await fetch('https://restcountries.com/v3.1/alpha?codes=' + a)
-    const jsonData = await response.json()
-    jsonData.forEach(k => {
-      borderC += '<a href="/single.html?country=' + k.name.common + '"}>' + k.name.common + '</a>'
-    })
-
-    document.getElementById('borderCountriesSpan').innerHTML = borderC
-  }
 
   fetchBorder(q)
 
@@ -127,7 +116,7 @@ const createCardSingle = (flag, name, native, population, region, subRegion, cap
             </div>
             <div class="border-countries-container">
               <span>Border Countries:</span>
-              <span id="borderCountriesSpan" ></span>
+              <span id="borderCountriesSpan"></span>
             </div>
           </div>`
 }
@@ -150,13 +139,22 @@ const fetchDataSingle = (q) => {
   fetch('https://restcountries.com/v3.1/name/' + q)
     .then(res => res.json())
     .then(data =>
-      // console.log(data)
       data.forEach(x => {
         let html = createCardSingle(x.flags.svg, x.name.common, x.name.official, x.population, x.region, x.subregion, x.capital[0], x.tld[0], x.currencies, x.languages, x.borders)
         document.getElementsByClassName('single-content')[0].innerHTML = html
       })
     )
     .catch(error => console.log(error))
+}
+
+async function fetchBorder(a) {
+  let borderC = ""
+  const response = await fetch('https://restcountries.com/v3.1/alpha?codes=' + a)
+  const jsonData = await response.json()
+  jsonData.forEach(k => {
+    borderC += '<a href="/single.html?country=' + k.name.common + '"}>' + k.name.common + '</a>'
+  })
+  document.getElementById('borderCountriesSpan').innerHTML = borderC
 }
 
 const clearData = () => {
