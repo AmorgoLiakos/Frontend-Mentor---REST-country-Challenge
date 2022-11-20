@@ -292,3 +292,30 @@ header .theme-toggler:hover {
   color: var(--text-color);
   font-size: 12px;
 }
+
+@media screen and (max-width: 991px) {
+
+  .main-container-single {
+    height: unset;
+  }
+
+  .single-content,
+  .details {
+    flex-direction: column;
+  }
+
+  .flag-container,
+  .col-left,
+  .col-right {
+    margin-bottom: 30px;
+  }
+
+  .border-countries-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .border-countries-container span:first-child {
+    margin-bottom: 10px;
+  }
+}
