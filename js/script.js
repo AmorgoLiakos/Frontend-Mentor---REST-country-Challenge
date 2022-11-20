@@ -3,18 +3,14 @@ window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('themeToggler').addEventListener('click', () => {
     let vars = document.querySelector(':root')
 
-    if (getComputedStyle(vars).getPropertyValue('--bg-elements').trim() == 'hsl(209, 23%, 22%)') {
-      vars.style.setProperty('--bg-elements', 'hsl(0, 0%, 100%)')
-      vars.style.setProperty('--bg-general', 'hsl(0, 0%, 98%)')
-      vars.style.setProperty('--text-color', 'hsl(200, 15%, 8%)')
-      document.getElementById('themeName').innerHTML = 'Light Mode'
-      document.getElementById('themeIcon').innerHTML = '<ion-icon name="sunny"></ion-icon>'
-    } else {
-      vars.style.setProperty('--bg-elements', 'hsl(209, 23%, 22%)')
-      vars.style.setProperty('--bg-general', 'hsl(207, 26%, 17%)')
-      vars.style.setProperty('--text-color', 'hsl(0, 0%, 98%)')
+    document.getElementsByTagName('body')[0].classList.toggle('light-theme')
+
+    if (document.getElementsByTagName('body')[0].classList.contains('light-theme')) {
       document.getElementById('themeName').innerHTML = 'Dark Mode'
       document.getElementById('themeIcon').innerHTML = '<ion-icon name="moon"></ion-icon>'
+    } else {
+      document.getElementById('themeName').innerHTML = 'Light Mode'
+      document.getElementById('themeIcon').innerHTML = '<ion-icon name="sunny"></ion-icon>'
     }
   })
 })
