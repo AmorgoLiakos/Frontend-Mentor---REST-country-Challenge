@@ -1,3 +1,4 @@
+// Theme Toggler
 window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('themeToggler').addEventListener('click', () => {
     let vars = document.querySelector(':root')
@@ -18,6 +19,7 @@ window.addEventListener('DOMContentLoaded', () => {
   })
 })
 
+// Homepage
 if (window.location.pathname == "/") {
   window.addEventListener('DOMContentLoaded', () => {
     fetchData('all')
@@ -27,9 +29,23 @@ if (window.location.pathname == "/") {
     document.getElementById('search').addEventListener('focusout', (e) => {
       search(e.target.value)
     })
+    document.getElementById('filterSelect').addEventListener('change', (e) => {
+      const regionPath = {
+        'all': 'all',
+        'africa': 'region/africa',
+        'americas': 'region/americas',
+        'asia': 'region/asia',
+        'europe': 'region/europe',
+        'oceania': 'region/oceania',
+
+      }
+      clearData()
+      fetchData(regionPath[e.target.value])
+    })
   })
 }
 
+// Single Country Page
 if (window.location.pathname == "/single.html") {
   window.addEventListener('DOMContentLoaded', () => {
     const country = new URLSearchParams(window.location.search).get('country')
@@ -37,6 +53,7 @@ if (window.location.pathname == "/single.html") {
   })
 }
 
+// Functions
 const createCard = (img, name, population, region, capital) => {
   return `<div id="${name}" class="card button-card">
             <div class="flag">
@@ -47,6 +64,70 @@ const createCard = (img, name, population, region, capital) => {
               <h5 class="population"> Population: <span class="population-span">${population}</span></h5>
               <h5 class="region"> Region: <span class="region-span">${region}</span></h5>
               <h5 class="capital"> Capital: <span class="capital-span">${capital}</span></h5>
+            </div>
+          </div>`
+}
+
+const createCardSingle = (flag, name, native, population, region, subRegion, capital, topLvlDomain, currencies, languages, borderCountries) => {
+  let curs = Object.values(currencies)
+  let cur = ""
+  let langs = Object.values(languages)
+  let lang = ""
+  curs.forEach((x, i) => {
+    if (i == curs.length - 1) {
+      cur += x.name
+    } else {
+      cur += x.name + " ,"
+    }
+  })
+  langs.forEach((y, i) => {
+    if (i == langs.length - 1) {
+      lang += y
+    } else {
+      lang += y + " ,"
+    }
+  })
+  let q = ""
+  // let borderC = ""
+  borderCountries.forEach(c => {
+    q += c + ","
+  })
+  let borderC = ""
+
+  async function fetchBorder(a) {
+    const response = await fetch('https://restcountries.com/v3.1/alpha?codes=' + a)
+    const jsonData = await response.json()
+    jsonData.forEach(k => {
+      borderC += '<a href="/single.html?country=' + k.name.common + '"}>' + k.name.common + '</a>'
+    })
+
+    document.getElementById('borderCountriesSpan').innerHTML = borderC
+  }
+
+  fetchBorder(q)
+
+  return `<div class="flag-container">
+            <img src="${flag}" alt="flag">
+          </div>
+          <div class="details-container">
+            <h1 class="country-name">${name}</h1>
+            <div class="details">
+              <div class="col-left">
+                <span>Native Name: ${native}</span>
+                <span>Population: ${population}</span>
+                <span>Region: ${region}</span>
+                <span>Sub Region: ${subRegion}</span>
+                <span>Capital: ${capital}</span>
+              </div>
+              <div class="col-right">
+                <span>Top Level Domain: ${topLvlDomain}</span>
+                <span>Currencies: ${cur}</span>
+                <span>Languages: ${lang}</span>
+              </div>
+            </div>
+            <div class="border-countries-container">
+              <span>Border Countries:</span>
+              <span id="borderCountriesSpan" ></span>
             </div>
           </div>`
 }
@@ -69,7 +150,11 @@ const fetchDataSingle = (q) => {
   fetch('https://restcountries.com/v3.1/name/' + q)
     .then(res => res.json())
     .then(data =>
-      console.log(data)
+      // console.log(data)
+      data.forEach(x => {
+        let html = createCardSingle(x.flags.svg, x.name.common, x.name.official, x.population, x.region, x.subregion, x.capital[0], x.tld[0], x.currencies, x.languages, x.borders)
+        document.getElementsByClassName('single-content')[0].innerHTML = html
+      })
     )
     .catch(error => console.log(error))
 }

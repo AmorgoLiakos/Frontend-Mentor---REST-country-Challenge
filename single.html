@@ -16,17 +16,23 @@
       <h4><a href="/">Where in the world?</a></h4>
     </div>
     <div class="theme-toggler-container">
-      <button class="theme-toggler"><span>
+      <button id="themeToggler" class="theme-toggler">
+        <span id="themeIcon">
           <ion-icon name="moon"></ion-icon>
-        </span>Dark Mode</button>
+        </span>
+        <span id="themeName"> Dark Mode </span>
+      </button>
     </div>
   </header>
 
   <body>
-    <main class="main-container">
+    <main class="main-container main-container-single">
       <a href="/" class="back-btn">
         <ion-icon name="arrow-back"></ion-icon>Back
       </a>
+      <div class="single-content">
+
+      </div>
     </main>
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

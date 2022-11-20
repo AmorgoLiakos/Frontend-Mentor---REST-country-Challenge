@@ -74,6 +74,10 @@ header .theme-toggler:hover {
   background-color: var(--bg-general);
 }
 
+.main-container-single {
+  height: calc(100vh - 75px);
+}
+
 @media screen and (max-width: 580px) {
   .main-container {
     padding: 15px 30px;
@@ -230,4 +234,61 @@ header .theme-toggler:hover {
 
 .back-btn ion-icon {
   margin-right: 5px;
+}
+
+/* Single */
+.single-content {
+  display: flex;
+  margin-top: 50px;
+}
+
+.flag-container {
+  flex-basis: 50%;
+  margin-right: 50px;
+}
+
+.details-container {
+  flex-basis: 50%;
+}
+
+.country-name {
+  color: var(--text-color);
+}
+
+.details {
+  display: flex;
+  justify-content: space-between;
+  margin: 50px 0;
+  color: var(--text-color);
+}
+
+.details span {
+  margin-bottom: 10px
+}
+
+.col-left,
+.col-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.border-countries-container {
+  display: flex;
+  align-items: center;
+}
+
+.border-countries-container span {
+  display: inline-block;
+  margin-right: 15px;
+  color: var(--text-color);
+}
+
+.border-countries-container a {
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  padding: 7px 15px;
+  background-color: var(--bg-elements);
+  color: var(--text-color);
+  font-size: 12px;
 }
